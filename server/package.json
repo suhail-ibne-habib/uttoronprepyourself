@@ -1,0 +1,27 @@
+{
+  "name": "uttoronprepyourself",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "suhail_habib",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@better-auth/mongo-adapter": "^1.7.5",
+    "better-auth": "^1.7.5",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.2",
+    "express": "^5.2.1",
+    "express-async-handler": "^1.2.0",
+    "mongodb": "^7.6.0",
+    "mongoose": "^9.10.1",
+    "multer": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
