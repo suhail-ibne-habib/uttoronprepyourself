@@ -1,0 +1,506 @@
+export const exams = [
+  {
+    slug: "ntrca-school-level",
+    name: "NTRCA School Level",
+    shortName: "NTRCA School",
+    board: "NTRCA",
+    description:
+      "Non-government teacher registration for school level. Practice official-style English and grammar items with worked explanations.",
+    years: [2024, 2023],
+  },
+  {
+    slug: "ntrca-college-level",
+    name: "NTRCA College Level",
+    shortName: "NTRCA College",
+    board: "NTRCA",
+    description:
+      "College-level teacher registration paper. Review past-year stems, lock in an option, then open the rule behind the key.",
+    years: [2024],
+  },
+  {
+    slug: "bcs-preliminary",
+    name: "BCS Preliminary",
+    shortName: "BCS Preli",
+    board: "BPSC",
+    description:
+      "Bangladesh Civil Service preliminary MCQs. English and general items written in the same format you will see on exam day.",
+    years: [2024],
+  },
+];
+
+const ntrcaSchool2024 = {
+  exam: "NTRCA School Level",
+  examSlug: "ntrca-school-level",
+  year: 2024,
+  subject: "English",
+  totalMarks: 8,
+  questions: [
+    {
+      id: "ntrca-sl-2024-01",
+      number: 1,
+      topic: "Modals & Semi-modals",
+      marks: 1,
+      stem: "Tomorrow is Friday, so she _____ go to work.",
+      options: [
+        { key: "a", text: "doesn't have to" },
+        { key: "b", text: "have to" },
+        { key: "c", text: "doesn't have" },
+        { key: "d", text: "have" },
+      ],
+      correctKey: "a",
+      explanation: {
+        heading: "Absence of obligation",
+        body: "In the present simple, third-person singular (she) takes does. Negative “have to” therefore becomes doesn’t have to, which means there is no obligation — Friday is a holiday, so going to work is not required.",
+        points: [
+          "have to is a semi-modal. Negation sits on the dummy auxiliary do/does, not on have.",
+          "doesn’t have (without to) is incomplete; the infinitive marker is required: have to + verb.",
+          "have to / have do not agree with a third-person singular subject.",
+        ],
+      },
+    },
+    {
+      id: "ntrca-sl-2024-02",
+      number: 2,
+      topic: "Modals & Semi-modals",
+      marks: 1,
+      stem: "They _____ be at the airport in 1 hour.",
+      options: [
+        { key: "a", text: "has to" },
+        { key: "b", text: "has" },
+        { key: "c", text: "have to" },
+        { key: "d", text: "have" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Plural subject + obligation",
+        body: "They is a plural pronoun, so the semi-modal stays have to, not has to. The sentence expresses external necessity: arriving at the airport is required, not optional.",
+        points: [
+          "have to + bare infinitive (be) is the pattern for obligation.",
+          "has to agrees only with he / she / it.",
+          "Bare have would need an object (have a ticket), not a following verb.",
+        ],
+      },
+    },
+    {
+      id: "ntrca-sl-2024-03",
+      number: 3,
+      topic: "Modals & Semi-modals",
+      marks: 1,
+      stem: "My room is dirty. I _____ clean my room.",
+      options: [
+        { key: "a", text: "have" },
+        { key: "b", text: "has to" },
+        { key: "c", text: "has" },
+        { key: "d", text: "have to" },
+      ],
+      correctKey: "d",
+      explanation: {
+        heading: "First-person obligation",
+        body: "I takes have to, never has to. The dirty room creates a practical necessity, which is exactly what have to encodes.",
+        points: [
+          "Pattern: subject + have/has to + base verb.",
+          "I / you / we / they → have to; he / she / it → has to.",
+          "have without to cannot introduce another verb (clean).",
+        ],
+      },
+    },
+    {
+      id: "ntrca-sl-2024-04",
+      number: 4,
+      topic: "Modals of prohibition",
+      marks: 1,
+      stem: "You _____ smoke inside the examination hall.",
+      options: [
+        { key: "a", text: "mustn't" },
+        { key: "b", text: "don't have to" },
+        { key: "c", text: "must" },
+        { key: "d", text: "needn't" },
+      ],
+      correctKey: "a",
+      explanation: {
+        heading: "Prohibition vs lack of necessity",
+        body: "Mustn’t forbids an action. Don’t have to / needn’t only say the action is not required — you may still do it. Smoking in a hall is banned, so the key is mustn’t.",
+        points: [
+          "mustn’t = it is forbidden.",
+          "don’t have to = it is not necessary.",
+          "must would order the person to smoke, which is the opposite meaning.",
+        ],
+      },
+    },
+    {
+      id: "ntrca-sl-2024-05",
+      number: 5,
+      topic: "Subject-verb agreement",
+      marks: 1,
+      stem: "Neither of the candidates _____ present at the viva.",
+      options: [
+        { key: "a", text: "were" },
+        { key: "b", text: "was" },
+        { key: "c", text: "are" },
+        { key: "d", text: "have been" },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Neither of + plural noun",
+        body: "Neither is grammatically singular. Even when of the candidates looks plural, the verb agrees with neither: was, not were.",
+        points: [
+          "Neither / either / each of + plural noun → singular verb.",
+          "were / are would be used if the subject itself were plural (the candidates).",
+        ],
+      },
+    },
+    {
+      id: "ntrca-sl-2024-06",
+      number: 6,
+      topic: "Conditionals",
+      marks: 1,
+      stem: "If I _____ you, I would revise the pedagogy notes first.",
+      options: [
+        { key: "a", text: "was" },
+        { key: "b", text: "am" },
+        { key: "c", text: "were" },
+        { key: "d", text: "had been" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Unreal present (second conditional)",
+        body: "Advice built on an imaginary situation uses If + past, would + base verb. After I, formal English keeps were (the subjunctive), not was.",
+        points: [
+          "If I were you is a fixed examiner favourite.",
+          "am belongs to a real present condition (first conditional).",
+          "had been would push the sentence into the third conditional (past regret).",
+        ],
+      },
+    },
+    {
+      id: "ntrca-sl-2024-07",
+      number: 7,
+      topic: "Prepositions of time",
+      marks: 1,
+      stem: "She has been teaching at this school _____ 2015.",
+      options: [
+        { key: "a", text: "for" },
+        { key: "b", text: "from" },
+        { key: "c", text: "since" },
+        { key: "d", text: "at" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Since vs for",
+        body: "Present perfect continuous with a starting point takes since. 2015 is a point in time, not a duration.",
+        points: [
+          "since + point (2015, Monday, last year).",
+          "for + period (for ten years, for two hours).",
+          "from needs a matching to (from 2015 to 2020).",
+        ],
+      },
+    },
+    {
+      id: "ntrca-sl-2024-08",
+      number: 8,
+      topic: "Vocabulary",
+      marks: 1,
+      stem: "The antonym of “scarce” is —",
+      options: [
+        { key: "a", text: "rare" },
+        { key: "b", text: "limited" },
+        { key: "c", text: "abundant" },
+        { key: "d", text: "insufficient" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Antonym, not synonym",
+        body: "Scarce means in short supply. Rare, limited and insufficient sit on the same side of the meaning. The opposite is abundant — present in large quantity.",
+      },
+    },
+  ],
+};
+
+const ntrcaSchool2023 = {
+  exam: "NTRCA School Level",
+  examSlug: "ntrca-school-level",
+  year: 2023,
+  subject: "English",
+  totalMarks: 5,
+  questions: [
+    {
+      id: "ntrca-sl-2023-01",
+      number: 1,
+      topic: "Tense",
+      marks: 1,
+      stem: "The train _____ before we reached the station.",
+      options: [
+        { key: "a", text: "left" },
+        { key: "b", text: "has left" },
+        { key: "c", text: "had left" },
+        { key: "d", text: "was leaving" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Past perfect for the earlier past",
+        body: "Two past events: the train’s departure happened first. The earlier action takes past perfect (had left); the later one stays simple past (reached).",
+      },
+    },
+    {
+      id: "ntrca-sl-2023-02",
+      number: 2,
+      topic: "Articles",
+      marks: 1,
+      stem: "He is _____ honest officer.",
+      options: [
+        { key: "a", text: "a" },
+        { key: "b", text: "an" },
+        { key: "c", text: "the" },
+        { key: "d", text: "no article" },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Sound, not spelling",
+        body: "Honest begins with a silent h, so the first sound is a vowel /ɒ/. Use an, not a.",
+      },
+    },
+    {
+      id: "ntrca-sl-2023-03",
+      number: 3,
+      topic: "Voice",
+      marks: 1,
+      stem: "Choose the correct passive form: “They have completed the syllabus.”",
+      options: [
+        { key: "a", text: "The syllabus has been completed." },
+        { key: "b", text: "The syllabus have been completed." },
+        { key: "c", text: "The syllabus was completed." },
+        { key: "d", text: "The syllabus is completed by them." },
+      ],
+      correctKey: "a",
+      explanation: {
+        heading: "Present perfect passive",
+        body: "have/has + v3 becomes has/have + been + v3. Syllabus is singular, so has been completed. Simple past (was completed) drops the perfect aspect.",
+      },
+    },
+    {
+      id: "ntrca-sl-2023-04",
+      number: 4,
+      topic: "Idioms",
+      marks: 1,
+      stem: "“To hit the nail on the head” means —",
+      options: [
+        { key: "a", text: "to hurt someone" },
+        { key: "b", text: "to say exactly the right thing" },
+        { key: "c", text: "to delay a decision" },
+        { key: "d", text: "to work very hard" },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Fixed idiom",
+        body: "Hitting the nail on the head is being precisely correct — the remark or diagnosis is exact, not merely effort or harm.",
+      },
+    },
+    {
+      id: "ntrca-sl-2023-05",
+      number: 5,
+      topic: "Narration",
+      marks: 1,
+      stem: "He said, “I am preparing for NTRCA.” The reported form is —",
+      options: [
+        { key: "a", text: "He said that he is preparing for NTRCA." },
+        { key: "b", text: "He said that he was preparing for NTRCA." },
+        { key: "c", text: "He said that I was preparing for NTRCA." },
+        { key: "d", text: "He said that he prepared for NTRCA." },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Backshift after a past reporting verb",
+        body: "Said is past, so present continuous (am preparing) moves to past continuous (was preparing). The pronoun I becomes he to match the speaker.",
+      },
+    },
+  ],
+};
+
+const ntrcaCollege2024 = {
+  exam: "NTRCA College Level",
+  examSlug: "ntrca-college-level",
+  year: 2024,
+  subject: "English",
+  totalMarks: 4,
+  questions: [
+    {
+      id: "ntrca-cl-2024-01",
+      number: 1,
+      topic: "Clause",
+      marks: 1,
+      stem: "Identify the sentence with a noun clause.",
+      options: [
+        { key: "a", text: "I know that she will qualify." },
+        { key: "b", text: "The teacher who arrived late apologised." },
+        { key: "c", text: "We waited until the bell rang." },
+        { key: "d", text: "Although it rained, classes continued." },
+      ],
+      correctKey: "a",
+      explanation: {
+        heading: "Noun clause as object",
+        body: "That she will qualify is the object of know, so it functions as a noun. Who arrived late is adjectival; until / although introduce adverbial clauses.",
+      },
+    },
+    {
+      id: "ntrca-cl-2024-02",
+      number: 2,
+      topic: "Transformation",
+      marks: 1,
+      stem: "The opposite of “optimistic” is —",
+      options: [
+        { key: "a", text: "hopeful" },
+        { key: "b", text: "cheerful" },
+        { key: "c", text: "pessimistic" },
+        { key: "d", text: "confident" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Antonym",
+        body: "Optimistic expects a good outcome. Pessimistic expects a bad one. The other three sit near the same pole as optimistic.",
+      },
+    },
+    {
+      id: "ntrca-cl-2024-03",
+      number: 3,
+      topic: "Agreement",
+      marks: 1,
+      stem: "The jury _____ divided in their opinion.",
+      options: [
+        { key: "a", text: "was" },
+        { key: "b", text: "is" },
+        { key: "c", text: "were" },
+        { key: "d", text: "has" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Collective noun, members acting separately",
+        body: "When a collective noun (jury, committee) emphasises individual members — here, divided opinions — British exam English prefers a plural verb: were.",
+      },
+    },
+    {
+      id: "ntrca-cl-2024-04",
+      number: 4,
+      topic: "Preposition",
+      marks: 1,
+      stem: "He is good _____ mathematics but weak _____ spoken English.",
+      options: [
+        { key: "a", text: "in, at" },
+        { key: "b", text: "at, in" },
+        { key: "c", text: "on, in" },
+        { key: "d", text: "at, at" },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Good at / weak in",
+        body: "Ability with a subject takes good at. Weakness is commonly weak in. Examiners often pair the two in one stem.",
+      },
+    },
+  ],
+};
+
+const bcs2024 = {
+  exam: "BCS Preliminary",
+  examSlug: "bcs-preliminary",
+  year: 2024,
+  subject: "English & GK",
+  totalMarks: 5,
+  questions: [
+    {
+      id: "bcs-2024-01",
+      number: 1,
+      topic: "Synonym",
+      marks: 1,
+      stem: "The word closest in meaning to “meticulous” is —",
+      options: [
+        { key: "a", text: "careless" },
+        { key: "b", text: "hasty" },
+        { key: "c", text: "painstaking" },
+        { key: "d", text: "ordinary" },
+      ],
+      correctKey: "c",
+      explanation: {
+        heading: "Close reading of the stem",
+        body: "Meticulous means extremely careful about detail. Painstaking carries the same idea. Careless and hasty are antonyms.",
+      },
+    },
+    {
+      id: "bcs-2024-02",
+      number: 2,
+      topic: "Fill in the gap",
+      marks: 1,
+      stem: "The committee put _____ the meeting until next week.",
+      options: [
+        { key: "a", text: "up" },
+        { key: "b", text: "off" },
+        { key: "c", text: "on" },
+        { key: "d", text: "in" },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Phrasal verb",
+        body: "Put off means postpone. Put up (accommodate / display), put on (wear / arrange), and put in (submit) do not mean delay.",
+      },
+    },
+    {
+      id: "bcs-2024-03",
+      number: 3,
+      topic: "Bangladesh affairs",
+      marks: 1,
+      stem: "The Constitution of Bangladesh was adopted in —",
+      options: [
+        { key: "a", text: "1971" },
+        { key: "b", text: "1972" },
+        { key: "c", text: "1973" },
+        { key: "d", text: "1975" },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Civic fact",
+        body: "The Constituent Assembly adopted the Constitution on 4 November 1972. It came into force on 16 December 1972.",
+      },
+    },
+    {
+      id: "bcs-2024-04",
+      number: 4,
+      topic: "One-word substitution",
+      marks: 1,
+      stem: "A person who loves his country is called a —",
+      options: [
+        { key: "a", text: "patriot" },
+        { key: "b", text: "martyr" },
+        { key: "c", text: "pioneer" },
+        { key: "d", text: "stoic" },
+      ],
+      correctKey: "a",
+      explanation: {
+        heading: "Vocabulary",
+        body: "Patriot = lover of one’s country. Martyr dies for a cause; pioneer leads the way; stoic endures hardship without complaint.",
+      },
+    },
+    {
+      id: "bcs-2024-05",
+      number: 5,
+      topic: "Spot the error",
+      marks: 1,
+      stem: "Choose the grammatically correct sentence.",
+      options: [
+        { key: "a", text: "Each of the boys have a locker." },
+        { key: "b", text: "Each of the boys has a locker." },
+        { key: "c", text: "Each of the boy has a locker." },
+        { key: "d", text: "Each of boys has a locker." },
+      ],
+      correctKey: "b",
+      explanation: {
+        heading: "Each of + plural noun + singular verb",
+        body: "Each is singular, so the verb is has. The noun after of must be plural (the boys) because you are picking one from a group.",
+      },
+    },
+  ],
+};
+
+export const papers = {
+  "ntrca-school-level:2024": ntrcaSchool2024,
+  "ntrca-school-level:2023": ntrcaSchool2023,
+  "ntrca-college-level:2024": ntrcaCollege2024,
+  "bcs-preliminary:2024": bcs2024,
+};
