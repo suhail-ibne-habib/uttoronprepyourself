@@ -11,12 +11,14 @@ import { migrateOffExamSubjects } from "./lib/migrateExamSubjects.js";
 import { seedStudyTopics } from "./lib/seedStudyTopics.js";
 import { StudyTopic } from "./models/studyTopic.model.js";
 
-try {
-  dns.setServers(["8.8.8.8", "1.1.1.1"]);
-  dns.setDefaultResultOrder("ipv4first");
-} catch {
-  dns.setDefaultResultOrder("ipv4first");
+if (!process.env.VERCEL) {
+  try {
+    dns.setServers(["8.8.8.8", "1.1.1.1"]);
+  } catch {
+    // Restricted runtimes cannot replace the system resolver.
+  }
 }
+dns.setDefaultResultOrder("ipv4first");
 
 async function boot() {
   await connectDB();
@@ -32,10 +34,21 @@ async function boot() {
   return createApp();
 }
 
-const app = await boot();
+let app;
+
+try {
+  app = await boot();
+} catch (error) {
+  console.error("Server failed to start", error?.message || error);
+  app = express();
+  app.use((req, res) => {
+    res.status(500).json({
+      message: "Server failed to start. Check the Vercel runtime logs for this deployment.",
+    });
+  });
+}
 
 export default app;
-void express;
 
 if (!process.env.VERCEL) {
   const port = process.env.PORT || 8080;

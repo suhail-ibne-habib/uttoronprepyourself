@@ -2,12 +2,14 @@ import dns from "node:dns";
 import mongoose from "mongoose";
 import { DB_NAME } from "../constants.js";
 
-try {
-  dns.setServers(["8.8.8.8", "1.1.1.1"]);
-  dns.setDefaultResultOrder("ipv4first");
-} catch {
-  dns.setDefaultResultOrder("ipv4first");
+if (!process.env.VERCEL) {
+  try {
+    dns.setServers(["8.8.8.8", "1.1.1.1"]);
+  } catch {
+    // Restricted runtimes cannot replace the system resolver.
+  }
 }
+dns.setDefaultResultOrder("ipv4first");
 
 const connectDB = async () => {
   try {
@@ -20,8 +22,8 @@ const connectDB = async () => {
     );
     return connectionInstance;
   } catch (error) {
-    console.log("MONGODB connection FAILED ", error);
-    process.exit(1);
+    console.error("MONGODB connection FAILED", error?.message || error);
+    throw error;
   }
 };
 
