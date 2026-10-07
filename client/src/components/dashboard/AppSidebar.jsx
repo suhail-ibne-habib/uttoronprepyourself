@@ -11,6 +11,7 @@ import {
   LayoutDashboard,
   Library,
   LogOut,
+  ScanText,
 } from "lucide-react";
 import { isAdmin, useAuth } from "@/hooks/use-auth";
 import {
@@ -32,6 +33,7 @@ const items = [
   { href: "/dashboard/exams", label: "Exams", icon: BookOpen },
   { href: "/dashboard/subjects", label: "Subjects", icon: Library },
   { href: "/dashboard/questions", label: "Questions", icon: FileQuestion },
+  { href: "/dashboard/digitize", label: "Digitize", icon: ScanText },
   { href: "/dashboard/study", label: "Study lessons", icon: GraduationCap },
 ];
 

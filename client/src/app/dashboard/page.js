@@ -31,6 +31,11 @@ const actions = [
     title: "Add question",
     description: "MCQ stem, options, answer key and explanation.",
   },
+  {
+    href: "/dashboard/digitize",
+    title: "Digitize a photo",
+    description: "Review a scanned question before it is saved.",
+  },
 ];
 
 export default function DashboardPage() {
@@ -98,7 +103,11 @@ export default function DashboardPage() {
                   href={action.href}
                   className={`flex items-center justify-between gap-3 px-4 py-4 transition-colors hover:bg-muted/50 ${
                     index % 2 === 0 ? "sm:border-r sm:border-border" : ""
-                  } ${index < 2 ? "border-b border-border" : ""}`}
+                  } ${index < actions.length - 1 ? "border-b border-border sm:border-b-0" : ""} ${
+                    index < actions.length - (actions.length % 2 === 0 ? 2 : 1)
+                      ? "sm:border-b sm:border-border"
+                      : ""
+                  }`}
                 >
                   <span>
                     <span className="block text-sm font-medium">{action.title}</span>

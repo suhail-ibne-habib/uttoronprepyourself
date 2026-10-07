@@ -18,8 +18,12 @@ function createAuth() {
 
   return betterAuth({
     secret,
-    baseURL: process.env.BETTER_AUTH_URL || "http://localhost:8000",
-    trustedOrigins: [CLIENT_ORIGIN, "http://localhost:8000"],
+    baseURL: process.env.BETTER_AUTH_URL || "http://localhost:8080",
+    trustedOrigins: [
+      CLIENT_ORIGIN,
+      "http://localhost:8080",
+      process.env.BETTER_AUTH_URL,
+    ].filter(Boolean),
     database: mongodbAdapter(mongoose.connection.db, {
       client: mongoose.connection.getClient(),
       transaction: false,
