@@ -1,62 +1,28 @@
 import "dotenv/config";
-import dns from "node:dns";
-import express from "express";
-import connectDB from "./db/connect.js";
-import { initAuth } from "./lib/auth.js";
-import { seedAdmin } from "./lib/seedAdmin.js";
-import { createApp } from "./createApp.js";
-import { Question } from "./models/question.model.js";
-import { Subject } from "./models/subject.model.js";
-import { migrateOffExamSubjects } from "./lib/migrateExamSubjects.js";
-import { seedStudyTopics } from "./lib/seedStudyTopics.js";
-import { StudyTopic } from "./models/studyTopic.model.js";
+import dotenv from "dotenv";
+import { app } from "./app.js";
+import { prepare } from "./lib/prepare.js";
 
-if (!process.env.VERCEL) {
-  try {
-    dns.setServers(["8.8.8.8", "1.1.1.1"]);
-  } catch {
-    // Restricted runtimes cannot replace the system resolver.
-  }
-}
-dns.setDefaultResultOrder("ipv4first");
+dotenv.config({
+  path: "./.env",
+});
 
-async function boot() {
-  await connectDB();
-  await migrateOffExamSubjects();
-  await Promise.all([
-    Question.syncIndexes(),
-    Subject.syncIndexes(),
-    StudyTopic.syncIndexes(),
-  ]);
-  initAuth();
-  await seedAdmin();
-  await seedStudyTopics();
-  return createApp();
-}
+prepare()
+  .then(() => {
+    if (process.env.VERCEL) return;
 
-let app;
-
-try {
-  app = await boot();
-} catch (error) {
-  console.error("Server failed to start", error?.message || error);
-  app = express();
-  app.use((req, res) => {
-    res.status(500).json({
-      message: "Server failed to start. Check the Vercel runtime logs for this deployment.",
+    const port = process.env.PORT || 8080;
+    const server = app.listen(port, () => {
+      console.log(`Server is running at port : ${port}`);
     });
+    server.on("error", (error) => {
+      console.error(`Server failed to listen on port ${port}: ${error.message}`);
+      process.exit(1);
+    });
+  })
+  .catch((err) => {
+    console.log("MONGO db connection failed !!! ", err);
+    if (!process.env.VERCEL) process.exit(1);
   });
-}
 
 export default app;
-
-if (!process.env.VERCEL) {
-  const port = process.env.PORT || 8080;
-  const server = app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
-  server.on("error", (error) => {
-    console.error(`Server failed to listen on port ${port}: ${error.message}`);
-    process.exit(1);
-  });
-}
