@@ -1,14 +1,9 @@
 import axios from "axios";
 
-const apiOrigin = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080").replace(/\/$/, "");
-
 const api = axios.create({
-  baseURL: `${apiOrigin}/api`,
+  baseURL: "/api",
   withCredentials: true,
   timeout: 20000,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 function errorText(value) {

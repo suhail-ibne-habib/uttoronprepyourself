@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { admin } from "better-auth/plugins";
 import mongoose from "mongoose";
-import { CLIENT_ORIGIN } from "../constants.js";
+import { ALLOWED_ORIGINS } from "../constants.js";
 
 let authInstance;
 
@@ -20,7 +20,7 @@ function createAuth() {
     secret,
     baseURL: process.env.BETTER_AUTH_URL || "http://localhost:8080",
     trustedOrigins: [
-      CLIENT_ORIGIN,
+      ...ALLOWED_ORIGINS,
       "http://localhost:8080",
       process.env.BETTER_AUTH_URL,
     ].filter(Boolean),

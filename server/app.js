@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { toNodeHandler } from "better-auth/node";
-import { CLIENT_ORIGIN } from "./constants.js";
+import { ALLOWED_ORIGINS } from "./constants.js";
 import { getAuth } from "./lib/auth.js";
 import { prepare } from "./lib/prepare.js";
 import publicRoutes from "./routes/public.routes.js";
@@ -22,7 +22,10 @@ app.use(async (req, res, next) => {
 
 app.use(
   cors({
-    origin: CLIENT_ORIGIN,
+    origin(origin, callback) {
+      if (!origin || ALLOWED_ORIGINS.includes(origin)) callback(null, true);
+      else callback(null, false);
+    },
     credentials: true,
   }),
 );
