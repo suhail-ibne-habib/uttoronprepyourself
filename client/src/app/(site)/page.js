@@ -1,4 +1,14 @@
 import QuestionBankPicker from "@/components/questions/QuestionBankPicker";
+import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
+
+export const metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    url: "/",
+    title: siteTitle,
+    description: siteDescription,
+  },
+};
 
 const points = [
   {
@@ -19,12 +29,27 @@ export default function Home() {
   return (
     <div className="px-4 py-6 sm:px-8 sm:py-10">
       <div className="mx-auto max-w-6xl rounded-[32px] bg-paper px-6 py-10 sm:px-12 sm:py-16">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: siteName,
+              url: siteUrl,
+              description: siteDescription,
+            }),
+          }}
+        />
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
-            <p className="text-sm font-medium text-[#c47a28]">Bangladesh govt job prep</p>
+            <p className="text-sm font-medium text-[#c47a28]">NTRC, BCS, bank and other job exams</p>
             <h1 className="mt-4 font-serif text-5xl leading-[1.05] tracking-[-0.02em] text-ink sm:text-6xl">
               Practise the paper, then learn what you missed.
             </h1>
+            <p className="mt-4 max-w-lg text-base leading-7 text-muted-foreground">
+              Past papers for NTRC, BCS, bank and other Bangladesh job exams.
+            </p>
           </div>
           <div className="shrink-0">
             <div className="flex items-start gap-10 sm:gap-14">

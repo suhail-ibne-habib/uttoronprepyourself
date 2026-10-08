@@ -72,8 +72,8 @@ export default function StudyTopicPage({ params }) {
           />
         ) : (
           <p className="mt-6 text-sm leading-7 text-muted-foreground">
-            This topic appears in the question bank. A full NTRCA lesson has not been written
-            for it yet. Use the tagged questions below while the lesson is prepared.
+            This topic appears in the question bank. A full lesson has not been written
+            for it yet.
           </p>
         )}
 

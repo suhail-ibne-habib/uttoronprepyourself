@@ -22,8 +22,8 @@ export default function StudyHomePage() {
       </p>
       <h1 className="mt-2 font-serif text-4xl text-ink">Read by subject</h1>
       <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
-        Open a subject, then a topic. Lessons follow NTRCA English patterns: article use,
-        noun types, tense and the traps that appear in past papers.
+        Open a subject, then a topic. Lessons cover the patterns that show up in NTRC, BCS,
+        bank and other job papers.
       </p>
       {error ? <p className="mt-6 text-sm text-wrong">{error}</p> : null}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

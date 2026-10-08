@@ -2,6 +2,9 @@ import QuestionBankPicker from "@/components/questions/QuestionBankPicker";
 
 export const metadata = {
   title: "Question bank",
+  description:
+    "Past papers for NTRC, BCS, bank and other job exams, with answers and explanations.",
+  alternates: { canonical: "/question-bank" },
 };
 
 export default function QuestionBankPage() {
@@ -12,8 +15,8 @@ export default function QuestionBankPage() {
       </p>
       <h1 className="mt-2 font-serif text-4xl text-ink">Question bank</h1>
       <p className="mt-3 max-w-xl text-muted-foreground">
-        Choose exam type, level and year. Then open the paper to study the questions,
-        correct answers and explanations.
+        Choose a paper from NTRC, BCS, bank or another job exam. Then read the questions
+        with the correct answers and explanations.
       </p>
       <div className="mt-8">
         <QuestionBankPicker inline />

@@ -46,7 +46,7 @@ export default function StudySubjectPage({ params }) {
         <h1 className="mt-2 font-serif text-4xl text-ink">{data.subject.name}</h1>
         <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
           {data.subject.description ||
-            "Choose a topic from the list. Start with noun and article if you are preparing NTRCA English."}
+            "Choose a topic from the list."}
         </p>
         <ol className="mt-8 grid gap-2">
           {(data.lessons || []).map((lesson, index) => (

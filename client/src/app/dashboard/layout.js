@@ -1,8 +1,11 @@
-"use client";
-
 import AppSidebar from "@/components/dashboard/AppSidebar";
 import AuthGuard from "@/components/dashboard/AuthGuard";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+
+export const metadata = {
+  title: "Dashboard",
+  robots: { index: false, follow: false },
+};
 
 export default function DashboardLayout({ children }) {
   return (
