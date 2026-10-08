@@ -6,7 +6,7 @@ import { parseExplanation } from "../lib/helpers.js";
 import { tagsForQuestion } from "../lib/studyTree.js";
 import { loadTopicDirectory } from "./study.controller.js";
 
-function serializeQuestion(question, subject, directory = []) {
+function serializeQuestion(question, subject, directory = [], { hideAnswers = false } = {}) {
   const topicTags = tagsForQuestion(question, subject, directory);
   return {
     id: String(question._id),
@@ -19,8 +19,8 @@ function serializeQuestion(question, subject, directory = []) {
     marks: question.mark,
     stem: question.question,
     options: question.options,
-    correctKey: question.answerKey,
-    explanation: parseExplanation(question.explanation),
+    correctKey: hideAnswers ? null : question.answerKey,
+    explanation: hideAnswers ? null : parseExplanation(question.explanation),
     difficulty: question.difficulty,
     language: question.language,
     questionType: question.questionType,
@@ -137,6 +137,7 @@ export const getPublishedPaper = asyncHandler(async (req, res) => {
     .sort({ questionNo: 1 });
 
   const directory = await loadTopicDirectory();
+  const hideAnswers = req.query.for === "test";
   const subjectQuery = req.query.subject;
   const filtered = subjectQuery
     ? questions.filter((question) => question.subjectId?.slug === subjectQuery)
@@ -178,8 +179,78 @@ export const getPublishedPaper = asyncHandler(async (req, res) => {
         };
       }),
       questions: filtered.map((question) =>
-        serializeQuestion(question, question.subjectId, directory),
+        serializeQuestion(question, question.subjectId, directory, { hideAnswers }),
       ),
+    },
+  });
+});
+
+export const submitPaper = asyncHandler(async (req, res) => {
+  const year = Number(req.params.year);
+  if (!year) throw new ApiError(400, "Invalid year");
+
+  const exam = await Exam.findOne({
+    slug: req.params.slug,
+    year,
+    status: "published",
+  });
+  if (!exam) throw new ApiError(404, "Paper not found");
+
+  const questions = await Question.find({
+    examId: exam._id,
+    status: "published",
+  })
+    .populate("subjectId", "name slug status")
+    .sort({ questionNo: 1 });
+
+  const directory = await loadTopicDirectory();
+  const answers = req.body?.answers && typeof req.body.answers === "object" ? req.body.answers : {};
+  const correctMark = 1;
+  const mistakePenalty = 0.25;
+
+  let scored = 0;
+  let correct = 0;
+  let wrong = 0;
+  let skipped = 0;
+  const missed = [];
+
+  for (const question of questions) {
+    const selectedKey = answers[String(question._id)] || null;
+    const isCorrect = Boolean(selectedKey) && selectedKey === question.answerKey;
+    if (!selectedKey) skipped += 1;
+    else if (isCorrect) {
+      correct += 1;
+      scored += correctMark;
+    } else {
+      wrong += 1;
+      scored -= mistakePenalty;
+    }
+
+    if (!isCorrect) {
+      missed.push({
+        ...serializeQuestion(question, question.subjectId, directory),
+        selectedKey,
+        skipped: !selectedKey,
+      });
+    }
+  }
+
+  const maxMarks = questions.length * correctMark;
+
+  res.json({
+    success: true,
+    data: {
+      exam: exam.name,
+      year: exam.year,
+      total: questions.length,
+      correct,
+      wrong,
+      skipped,
+      scored: Math.round(scored * 100) / 100,
+      maxMarks,
+      correctMark,
+      mistakePenalty,
+      missed,
     },
   });
 });

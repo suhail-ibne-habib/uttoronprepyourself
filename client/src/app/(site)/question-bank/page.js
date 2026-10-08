@@ -16,7 +16,7 @@ export default function QuestionBankPage() {
         correct answers and explanations.
       </p>
       <div className="mt-8">
-        <QuestionBankPicker />
+        <QuestionBankPicker inline />
       </div>
     </div>
   );

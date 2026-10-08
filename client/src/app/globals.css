@@ -5,13 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --paper: #fffcf7;
-  --ink: #1c1917;
-  --muted: oklch(0.97 0 0);
-  --line: #e4dccf;
-  --forest: #1f5c49;
-  --forest-soft: #e3f0ea;
-  --gold: #a57a22;
+  --paper: #f7f8f5;
+  --ink: #1a1f1c;
+  --muted: #eef2ec;
+  --line: #e3e8e1;
+  --forest: #1b3f36;
+  --forest-soft: #e7f0e8;
+  --gold: #e3943f;
+  --sage: #c5d4c0;
   --correct: #166534;
   --correct-bg: #e7f6ec;
   --wrong: #b42318;
@@ -59,6 +60,7 @@
   --color-forest: var(--forest);
   --color-forest-soft: var(--forest-soft);
   --color-gold: var(--gold);
+  --color-sage: var(--sage);
   --color-correct: var(--correct);
   --color-correct-bg: var(--correct-bg);
   --color-wrong: var(--wrong);
@@ -113,7 +115,7 @@ body {
 }
 
 ::selection {
-  background: #c8e2d6;
+  background: #d7e6d4;
 }
 
 .dark {

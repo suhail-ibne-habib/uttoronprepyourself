@@ -8,7 +8,7 @@ export default function Header() {
   const { user, loading, signOut } = useAuth();
 
   return (
-    <header className="sticky top-0 z-20 border-b border-line/80 bg-background/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-white/40 bg-sage/90 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5 text-ink">
           <span className="flex size-9 items-center justify-center rounded-lg bg-forest text-white">
@@ -23,6 +23,9 @@ export default function Header() {
         </Link>
 
         <nav className="flex items-center gap-4 text-sm font-medium text-ink sm:gap-5">
+          <Link href="/#start" className="rounded-full bg-gold px-3.5 py-1.5 text-white hover:bg-gold/90">
+            Take test
+          </Link>
           <Link href="/question-bank" className="hover:text-forest">
             Question bank
           </Link>
@@ -48,7 +51,7 @@ export default function Header() {
               <Link href="/login" className="hover:text-forest">
                 Login
               </Link>
-              <Link href="/register" className="hover:text-forest">
+              <Link href="/register" className="rounded-full bg-forest px-3.5 py-1.5 text-white hover:bg-forest/90">
                 Register
               </Link>
             </>
