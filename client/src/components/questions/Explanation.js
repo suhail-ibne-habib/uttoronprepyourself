@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronIcon } from "@/components/icons";
-import { linkTopicsInHtml, sanitizeExplanationHtml } from "@/lib/explanation";
+import { sanitizeExplanationHtml } from "@/lib/explanation";
 
 export default function Explanation({
   explanation,
@@ -9,15 +9,12 @@ export default function Explanation({
   onToggle,
   panelId,
   alwaysOpen = false,
-  topicTags = [],
 }) {
   if (!explanation) return null;
   const source = typeof explanation === "string" ? { html: explanation } : explanation;
   const rawHtml =
     source.html || (/<[a-z][\s\S]*>/i.test(source.body || "") ? source.body : null);
-  const html = rawHtml
-    ? linkTopicsInHtml(sanitizeExplanationHtml(rawHtml), topicTags)
-    : null;
+  const html = rawHtml ? sanitizeExplanationHtml(rawHtml) : null;
   const visible = alwaysOpen || open;
   return (
     <div className="mt-4 border-t border-line pt-3">

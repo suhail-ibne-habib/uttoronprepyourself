@@ -5,7 +5,6 @@ import { CheckIcon, EyeIcon, EyeOffIcon, FlagIcon, XIcon } from "@/components/ic
 import BlankStem from "@/components/questions/BlankStem";
 import Explanation from "@/components/questions/Explanation";
 import OptionList from "@/components/questions/OptionList";
-import TopicTags from "@/components/questions/TopicTags";
 
 function resultBadge(selectedKey, correctKey) {
   if (!selectedKey) return null;
@@ -53,13 +52,6 @@ export default function QuestionCard({
     ? showAnswer
     : reveal && (mode === "review" || Boolean(selectedKey));
   const explanationIsOpen = isStudy ? studyOpen : explanationOpen;
-  const topicTags = question.topicTags?.length
-    ? question.topicTags
-    : [
-        ...(question.primaryTopics || []),
-        ...(question.secondaryTopics || []),
-        ...(question.tertiaryTopics || []),
-      ].map((label) => ({ label, href: null }));
 
   return (
     <article
@@ -103,8 +95,6 @@ export default function QuestionCard({
           </button>
         )}
       </header>
-
-      <TopicTags tags={topicTags} />
 
       {question.passage ? (
         <div className="mb-4 rounded-xl border border-line bg-muted/40 p-4 text-sm leading-7 text-ink">
@@ -160,7 +150,6 @@ export default function QuestionCard({
           open={explanationIsOpen}
           onToggle={isStudy ? () => setStudyOpen((value) => !value) : onToggleExplanation}
           panelId={`explanation-${question.id}`}
-          topicTags={topicTags}
         />
       ) : null}
 

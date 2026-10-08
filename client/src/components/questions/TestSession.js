@@ -163,19 +163,6 @@ export default function TestSession({ slug, year }) {
         </section>
       ) : (
         <>
-          <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm text-muted-foreground">
-              Answered {answeredCount} of {paper.questions.length}
-            </p>
-            <button
-              type="button"
-              onClick={submit}
-              disabled={submitting}
-              className="h-10 rounded-full bg-forest px-5 text-sm font-medium text-white disabled:opacity-50"
-            >
-              {submitting ? "Submitting..." : "Submit paper"}
-            </button>
-          </div>
           {error ? <p className="mt-4 text-sm text-wrong">{error}</p> : null}
           <div className="mt-5 space-y-5">
             {paper.questions.map((question) => (
@@ -204,6 +191,19 @@ export default function TestSession({ slug, year }) {
             {!paper.questions.length ? (
               <p className="text-sm text-muted-foreground">This paper has no published questions yet.</p>
             ) : null}
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm text-muted-foreground">
+              Answered {answeredCount} of {paper.questions.length}
+            </p>
+            <button
+              type="button"
+              onClick={submit}
+              disabled={submitting || !paper.questions.length}
+              className="h-11 rounded-full bg-forest px-6 text-sm font-medium text-white disabled:opacity-50"
+            >
+              {submitting ? "Submitting..." : "Submit paper"}
+            </button>
           </div>
         </>
       )}
