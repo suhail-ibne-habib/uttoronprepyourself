@@ -55,6 +55,7 @@ export const listQuestionBank = asyncHandler(async (_req, res) => {
         level: paper.level,
         year: paper.year,
         examNumber: paper.examNumber,
+        totalQuestions: paper.totalQuestions,
       })),
     },
   });

@@ -1,5 +1,5 @@
-import QuestionBankPicker from "@/components/questions/QuestionBankPicker";
-import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
+import ExamCapsules from "@/components/questions/ExamCapsules";
+import { fetchPublic, siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 
 export const metadata = {
   alternates: { canonical: "/" },
@@ -21,11 +21,13 @@ const points = [
   },
   {
     title: "Read why",
-    text: "After you submit, each miss opens the explanation and the lesson for that topic.",
+    text: "After you submit, each miss opens the explanation.",
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const bank = await fetchPublic("/question-bank");
+
   return (
     <div className="px-4 py-6 sm:px-8 sm:py-10">
       <div className="mx-auto max-w-6xl rounded-[32px] bg-paper px-6 py-10 sm:px-12 sm:py-16">
@@ -66,8 +68,15 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-ink/10 pt-8">
-          <QuestionBankPicker inline />
+        <div id="start" className="mt-12 border-t border-ink/10 pt-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">Take test</p>
+          <h2 className="mt-2 font-serif text-3xl text-ink">Choose a paper</h2>
+          <p className="mt-2 max-w-lg text-sm leading-6 text-ink/60">
+            Each paper is a one-hour test. The answers stay hidden until you submit.
+          </p>
+          <div className="mt-6">
+            <ExamCapsules exams={bank?.exams} mode="test" />
+          </div>
         </div>
 
         <dl className="mt-16 grid gap-8 border-t border-ink/10 pt-8 sm:grid-cols-3">
