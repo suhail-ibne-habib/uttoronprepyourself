@@ -13,13 +13,15 @@ export function prepare() {
   if (!pending) {
     pending = (async () => {
       await connectDB();
+      initAuth();
+      if (process.env.VERCEL) return;
+
       await migrateOffExamSubjects();
       await Promise.all([
         Question.syncIndexes(),
         Subject.syncIndexes(),
         StudyTopic.syncIndexes(),
       ]);
-      initAuth();
       await seedAdmin();
       await seedStudyTopics();
     })();
