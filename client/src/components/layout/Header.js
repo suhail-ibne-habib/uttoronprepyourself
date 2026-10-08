@@ -29,9 +29,6 @@ export default function Header() {
           <Link href="/question-bank" className="hover:text-forest">
             Question bank
           </Link>
-          <Link href="/study" className="hover:text-forest">
-            Study
-          </Link>
           {loading ? null : user ? (
             <>
               <Link href="/profile" className="hover:text-forest">

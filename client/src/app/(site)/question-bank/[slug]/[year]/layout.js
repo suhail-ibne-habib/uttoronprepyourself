@@ -3,9 +3,9 @@ import { fetchPublic } from "@/lib/site";
 export async function generateMetadata({ params }) {
   const { slug, year } = await params;
   const paper = await fetchPublic(`/exams/${slug}/${year}`);
-  const title = paper ? `${paper.exam} ${paper.year} question paper` : "Question paper";
+  const title = paper ? `${paper.exam} ${paper.year} questions` : "Question paper";
   const description = paper
-    ? `${paper.exam} ${paper.year}: ${paper.totalQuestions || "past"} questions with answers and explanations.`
+    ? `${paper.exam} ${paper.year} questions with answers and explanations. Practise this NTRC, BCS, bank or other job paper.`
     : "Past paper for an NTRC, BCS, bank or other job exam, with answers and explanations.";
 
   return {

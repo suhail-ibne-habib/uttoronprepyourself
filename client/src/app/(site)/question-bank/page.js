@@ -11,7 +11,7 @@ export default function QuestionBankPage() {
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
-        Study
+        Papers
       </p>
       <h1 className="mt-2 font-serif text-4xl text-ink">Question bank</h1>
       <p className="mt-3 max-w-xl text-muted-foreground">
