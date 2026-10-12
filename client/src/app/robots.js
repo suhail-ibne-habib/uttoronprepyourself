@@ -1,13 +1,14 @@
-import { siteUrl } from "@/lib/site";
+import { requestSiteUrl } from "@/lib/site";
 
-export default function robots() {
+export default async function robots() {
+  const origin = await requestSiteUrl();
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: ["/dashboard", "/login", "/register", "/profile", "/test/", "/study"],
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    sitemap: `${origin}/sitemap.xml`,
+    host: origin,
   };
 }

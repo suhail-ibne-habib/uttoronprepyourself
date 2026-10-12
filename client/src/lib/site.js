@@ -1,6 +1,25 @@
+import { headers } from "next/headers";
+
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.uttoronprepyourself.shop"
 ).replace(/\/$/, "");
+
+/** Host that actually served this request, so sitemap URLs match the sitemap location. */
+export async function requestSiteUrl() {
+  try {
+    const headerList = await headers();
+    const rawHost = headerList.get("x-forwarded-host") || headerList.get("host");
+    const host = rawHost?.split(",")[0].trim();
+    if (!host) return siteUrl;
+    const forwardedProto = headerList.get("x-forwarded-proto")?.split(",")[0].trim();
+    const proto =
+      forwardedProto ||
+      (host.startsWith("localhost") || host.startsWith("127.0.0.1") ? "http" : "https");
+    return `${proto}://${host}`;
+  } catch {
+    return siteUrl;
+  }
+}
 
 export const siteName = "Uttoron";
 
